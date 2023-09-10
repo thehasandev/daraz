@@ -10,8 +10,8 @@ import Visa from "../../assets/visaa.png"
 import Roket from "../../assets/roket.png"
 import Bkash from "../../assets/bkash.png"
 import Nagot from "../../assets/nagot.png"
-import Dbbl from "../../assets/dbbl.jpg"
-import CashOn from "../../assets/cashOnDelevary.png"
+import DBBL from "../../assets/dbbl.jpg"
+import CashOn from "../../assets/cashondelevary.png"
 import American from "../../assets/american.png"
 
 import Bangladesh from "../../assets/bangladesh.png"
@@ -34,7 +34,7 @@ function Payment() {
                 <div>
                    <SubHeading text="Payment Methods"/>
                     <Flex className="pt-5 flex-wrap gap-y-5 justify-between items-center">
-                    {/* <div className='w-[80px]'>
+                    <div className='w-[80px]'>
                        <Image src={Visa}/>
                     </div>
                     <div className='w-[45px]'>
@@ -50,11 +50,11 @@ function Payment() {
                        <Image src={Nagot}/>
                     </div>
                     <div className='w-[40px] '>
-                       <Image src={Dbbl}/>
+                       <Image src={DBBL}/>
                     </div>
                     <div className='w-[60px] hidden xl:block'>
                        <Image src={American}/>
-                    </div> */}
+                    </div>
                     </Flex>
                 </div>
             </div>
@@ -63,7 +63,7 @@ function Payment() {
                 <div>
                    <SubHeading text="Daraz International"/>
                     <Flex className="pt-5 gap-y-5 flex-wrap justify-between">
-                        {/* <div className='w-[50px]'>
+                        <div className='w-[50px]'>
                           <Image src={Bangladesh}/>
                         </div>
                         <div className='w-[50px]'>
@@ -74,7 +74,7 @@ function Payment() {
                         </div>
                         <div className='w-[30px]'>
                           <Image src={Nepal}/>
-                        </div> */}
+                        </div>
             
                     </Flex>
                 </div>
@@ -84,11 +84,11 @@ function Payment() {
                 <div>
                    <SubHeading text="Follow Us"/>
                     <Flex className="pt-5 flex-wrap gap-y-5 md:justify-between gap-4 xl:gap-0">
-                        {/* <BsFacebook className='text-4xl text-blue-500'/>
+                        <BsFacebook className='text-4xl text-blue-500'/>
                         <BsYoutube className='text-4xl text-[red] '/>
                         <BsInstagram className='text-4xl text-primary '/>
                         <BsGlobe className='text-4xl text-[orange] '/>
-                        <BsTwitter className='text-4xl text-blue-500 '/> */}
+                        <BsTwitter className='text-4xl text-blue-500 '/>
                     </Flex>
                 </div>
             </div>
