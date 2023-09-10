@@ -28,7 +28,7 @@ function Payment() {
   return (
     <Section className="bg-white py-5">
         <Container>
-            <div className=" xl:justify-between gap-x-5 px-5 xl:gap-x-0 flex flex-wrap">
+            <div className=" justify-between gap-x-5 px-5 xl:gap-x-0 flex flex-wrap">
 
             <div className='w-[40%] xl:w-[19%]'>
                 <div>
