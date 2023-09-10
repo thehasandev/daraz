@@ -34,7 +34,7 @@ function Payment() {
                 <div>
                    <SubHeading text="Payment Methods"/>
                     <Flex className="pt-5 flex-wrap gap-y-5 justify-between items-center">
-                    <div className='w-[80px]'>
+                    {/* <div className='w-[80px]'>
                        <Image src={Visa}/>
                     </div>
                     <div className='w-[45px]'>
@@ -54,7 +54,7 @@ function Payment() {
                     </div>
                     <div className='w-[60px] hidden xl:block'>
                        <Image src={American}/>
-                    </div>
+                    </div> */}
                     </Flex>
                 </div>
             </div>
@@ -63,7 +63,7 @@ function Payment() {
                 <div>
                    <SubHeading text="Daraz International"/>
                     <Flex className="pt-5 gap-y-5 flex-wrap justify-between">
-                        <div className='w-[50px]'>
+                        {/* <div className='w-[50px]'>
                           <Image src={Bangladesh}/>
                         </div>
                         <div className='w-[50px]'>
@@ -74,7 +74,7 @@ function Payment() {
                         </div>
                         <div className='w-[30px]'>
                           <Image src={Nepal}/>
-                        </div>
+                        </div> */}
             
                     </Flex>
                 </div>
