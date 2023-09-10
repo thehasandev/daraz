@@ -10,6 +10,7 @@ import Delevary from "../../assets/de.png"
 import Feshon from "../../assets/beauty.png"
 import  Maggei from "../../assets/mage.png"
 import Beauty from "../../assets/beauty.png"
+import Bud from "../../assets/bud.png"
 import Mahe from "../../assets/mahe.png"
 import Tk from "../../assets/tk.png"
 import Sufa from "../../assets/sufa.png"
@@ -31,6 +32,7 @@ function MartDemo() {
         <MartRes src={Feshon} subHeading="Mart"/>
         <MartRes src={Maggei} subHeading="Magic"/>
         <MartRes src={Beauty} subHeading="Mart"/>
+        <MartRes src={Bud} subHeading="Mart"/>
         <MartRes src={Delevary} subHeading="Delevary"/>
         <MartRes src={Hot} subHeading="Hot"/>
      </Flex>  
