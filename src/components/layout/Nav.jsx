@@ -1,5 +1,7 @@
 import React, { useState,useEffect } from 'react'
 
+import Data from "../../data/search"
+
 import Section from "../Section"
 import Container  from "../Container"
 import List from '../List'
@@ -34,6 +36,27 @@ function Nav() {
     };
   }, []);
 
+  const [search,setSearch] = useState("")
+  const [searchIcon,setSearchIcon] = useState(true)
+
+  let handleSerchChange = (e)=>{
+    if(e.target.value!= ""){
+      setSearchIcon(false)
+    }else{
+      setSearchIcon(true)
+    }
+     setSearch(e.target.value)  
+  }
+  
+
+ let dataFiler =Data.filter((item)=>{
+  let searchValue = search.toLowerCase()
+  return searchValue =="" ? "" : item.name.toLowerCase().includes(searchValue)
+ }
+
+ 
+  
+)
 
   return (
     <>
@@ -55,11 +78,11 @@ function Nav() {
       </Container>
     </Section>
     
-    <Section className={`bg-white py-4 lg:py-5 fixed w-full z-10 ${scroll && "top-0"}`}>
+    <Section className={`bg-white py-4 lg:py-5  fixed w-full z-10 ${scroll && "top-0"}`}>
       <Container>
         <Flex className=" justify-between items-center">
            <div className='lg:hidden pl-4'>
-               <AiOutlineScan size={23} className='text-primary'/>
+              <AiOutlineScan size={23} className='text-primary'/>
                <p className='text-dm text-xs'>Scan</p>
            </div>
            
@@ -70,27 +93,30 @@ function Nav() {
           
           <div className='relative'>
              <div className='w-[200px] sm:w-[500px]  lg:w-[550px] 2xl:w-[800px]'>
-                  <input type="text" placeholder='Search in Daraz' className='focus:outline-none py-3 px-5 rounded-lg w-full bg-[#F5F5F5]'/>
+                  <input onChange={handleSerchChange} value={search} type="text" placeholder='Search in Daraz' className='focus:outline-none py-3 px-5 rounded-lg w-full bg-[#F5F5F5]'/>
              </div>
            
              <div className='h-full px-2 flex items-center lg:bg-primary absolute top-0 right-0 '>
-                <BiSearchAlt2 className='text-xl lg:text-3xl lg:text-white'/>
+              
+              <BiSearchAlt2 className={`${searchIcon?"block" :"hidden md:block"} text-xl lg:text-3xl lg:text-white`}/>
+               
              </div>
           </div>
 
-   <Flex className="gap-x-3">
-   <div className='lg:hidden'>
-            <div className='w-6 border rounded-full border-primary '>
-               <Image src={Tittle}/>
-            </div>
-               <p className='text-dm text-xs'>Coins</p>
-           </div>
-          <div className='lg:hidden pr-2'>
-            <div className='text-primary'>
-              <MdOutlineMobileScreenShare size={23} className='ml-1'/>
-            </div>
-               <p className='text-dm text-xs'>Top Up</p>
-           </div>
+   <Flex className="gap-x-3 ">
+      <div className='lg:hidden'>
+        <div className='w-6 border rounded-full border-primary '>
+          <Image src={Tittle}/>
+        </div>
+         <p className='text-dm text-xs'>Coins</p>
+      </div>
+
+      <div className='lg:hidden pr-2'>
+          <div className='text-primary'>
+            <MdOutlineMobileScreenShare size={23} className='ml-1'/>
+          </div>
+          <p className='text-dm text-xs'>Top Up</p>
+        </div>
    </Flex>
 
           <div className='hidden lg:block'>
@@ -106,6 +132,17 @@ function Nav() {
 
 
         </Flex>
+
+        <div className='absolute mt-2 xl:left-[350px] rounded-md bg-white left-[100px] w-[170px] xl:w-[550px] px-5  text-secondary  text-xl'>
+        <ul>
+             {
+              dataFiler.map((item,index)=>(
+                <li className='pt-2 pb-1' key={index}>{item.name}</li>
+              ))
+             }
+             
+           </ul>
+        </div>
       </Container>
     </Section>
 

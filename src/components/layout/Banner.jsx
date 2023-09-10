@@ -61,6 +61,8 @@ function Banner() {
             <div className='bg-four  lg:h-[410px] h-[150px] md:[200px] bg-contain bg-no-repeat '></div>
             <div className='bg-five  lg:h-[410px] h-[150px] md:[200px] bg-contain bg-no-repeat '></div>        
             <div className='bg-six  lg:h-[410px] h-[150px] md:[200px]  bg-contain bg-no-repeat '></div>
+            <div className='bg-seven  lg:h-[410px] h-[150px] md:[200px] bg-contain bg-no-repeat '></div>
+            <div className='bg-eight  lg:h-[410px] h-[150px] md:[200px] bg-contain bg-no-repeat '></div>
         </Slider> 
        </div>
     </Flex>

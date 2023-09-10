@@ -17,8 +17,8 @@ const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path='/' element={<RouteLayouts/>}>
      <Route path='/' element={<Home/>}/>
-     <Route path='/:tittle' element={<ForYouPartOne/>}/>
      <Route path='/:tittle' element={<FlashPartOne/>}/>
+     <Route path='/:card' element={<ForYouPartOne/>}/>
      <Route path='*' element={<Error/>}/>
     </Route>
   )

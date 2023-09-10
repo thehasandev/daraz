@@ -19,7 +19,7 @@ import {LuShieldClose} from "react-icons/lu"
 
 function ForYouPartOne() {
     let dataLocation = useLocation()
-  
+     
   return (
     <Section className="pt-32 pb-32">
         <Container>

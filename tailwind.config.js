@@ -19,13 +19,15 @@ export default {
     
       },
       backgroundImage: {
-        'one': "url(./assets/bg.jpg)",
-        'two': "url(./assets/sakib.jpg)",
+        'one': "url(./assets/bannerMahejabin.jpg)",
+        'two': "url(./assets/bannerMisho.jpg)",
         'three': "url(./assets/mosfiqur.jpg)",
-        'four': "url(./assets/flashDescount.jpg)",
+        'four': "url(./assets/ba.jpg)",
         'five': "url(./assets/brand.jpg)",
-        'six': "url(./assets/router.jpg)"
-      
+        'six': "url(./assets/router.jpg)",
+        'seven': "url(./assets/bg.jpg)",
+        'eight': "url(./assets/sakib.jpg)",
+        
     
       },
     },

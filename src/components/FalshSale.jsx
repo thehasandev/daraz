@@ -16,6 +16,7 @@ function FalshSale() {
     {
       flash.map((item,index)=>{
         let {tittle,image,price,peragraph,discount,persent} = item
+  
     return  <Link key={index} to={tittle} state={{image,price,peragraph,discount,persent}}>
             <div  className='w-[168px] mx-auto xl:w-[205px] shadow-[gray] border border-transparent xl:hover:border-gray xl:hover:shadow-xl '>
                 <img src={image} alt="Pillow" />

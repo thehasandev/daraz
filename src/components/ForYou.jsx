@@ -17,6 +17,7 @@ function ForYou() {
       { 
         forYou.map((item,index)=>{
           let{card,imageurl,porstionHeadingText,price,descount,pesent} = item
+          
            
     return  <Link key={index} to={card} state={{imageurl,porstionHeadingText,price,descount,pesent}}> 
             <div className='w-[170px] mx-auto xl:w-[200px]  shadow-[gray] border border-transparent xl:hover:border-gray md:hover:shadow-xl'>
