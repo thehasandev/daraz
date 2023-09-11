@@ -18,7 +18,7 @@ const router = createBrowserRouter(
     <Route path='/' element={<RouteLayouts/>}>
      <Route path='/' element={<Home/>}/>
      <Route path='/:tittle' element={<FlashPartOne/>}/>
-     <Route path='/:card' element={<ForYouPartOne/>}/>
+     <Route path="/card/:card" element={<ForYouPartOne/>}/>
      <Route path='*' element={<Error/>}/>
     </Route>
   )
