@@ -52,14 +52,14 @@ function ForYouPartOne() {
      
   return (
 
-    <Section className="pt-32 pb-32">
+    <Section className="pt-32 pb-32 overflow-x-hidden">
         <Container>
               {/* Add to Card part */}
 
               {
                  open &&
 
-                <div className={`absolute w-[90%] h-screen px-10  bg-sky-500 z-50 top-0 duration-500`}>
+                <div className={`absolute w-[90%] h-screen px-10  bg-primary z-50 top-0 duration-500`}>
                     <Flex className="justify-end text-white mt-5 mr-5 ">
                       <AiOutlineClose size={30} onClick={()=>{setOpen(false)}}/>
                     </Flex>

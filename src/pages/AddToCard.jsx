@@ -25,7 +25,7 @@ function AddToCard() {
 
 {
   open &&
-  <div className={`absolute w-[90%] h-screen px-10  bg-teal-500 z-50 top-0 duration-500 `}>
+  <div className={`absolute w-[90%] h-screen px-10  bg-primary right-0 z-50 top-0 duration-500 `}>
           <Flex className="justify-end text-white mt-5 mr-5 ">
               <AiOutlineClose size={30} onClick={()=>{setOpen(false)}}/>
           </Flex>

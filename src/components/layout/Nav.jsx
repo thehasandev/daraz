@@ -72,7 +72,7 @@ function Nav() {
       
       {
         open &&
-        <div className={`absolute w-4/12 h-screen p-16 bg-red-500 z-50 top-0 right-0 duration-500`}>
+        <div className={`absolute w-4/12 h-screen p-16 bg-primary z-50 top-0 right-0 duration-500`}>
             <Flex className="justify-end text-white">
               <AiOutlineClose size={30} onClick={()=>{setOpen(false)}}/>
             </Flex>
@@ -119,7 +119,7 @@ function Nav() {
              </Link>
 
             <Link to="/add-to-card">
-            <button className='w-[200px] px-4  py-4 bg-secondary rounded-[2px] font-roboto text-white font-semibold hover:bg-white hover:text-secondary duration-500 text-xl md:text-xl'>Add to Card</button>
+            <button onClick={()=>{setOpen(false)}} className='w-[200px] px-4  py-4 bg-secondary rounded-[2px] font-roboto text-white font-semibold hover:bg-white hover:text-secondary duration-500 text-xl md:text-xl'>Add to Card</button>
             </Link>
              
           </Flex>   

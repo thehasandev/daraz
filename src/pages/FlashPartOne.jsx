@@ -46,6 +46,8 @@ function FlashPartOne() {
           quantity: 1
         }
       ))
+
+     
     
     }
     
@@ -57,7 +59,7 @@ function FlashPartOne() {
       {/* Add to Card part */}
         {
           open &&
-         <div className={`absolute w-[90%] h-screen px-10  bg-green-500 z-50 top-0 duration-500 `}>
+         <div className={`absolute w-[90%] h-screen px-10  bg-primary z-50 top-0 duration-500 `}>
             <Flex className="justify-end text-white mt-5 mr-5 ">
               <AiOutlineClose size={30} onClick={()=>{setOpen(false)}}/>
             </Flex>
