@@ -51,7 +51,7 @@ function FlashPartOne() {
     
   return (
     <>
- <Section className="pt-32 pb-32">
+ <Section className="pt-32 pb-32 overflow-x-hidden">
      <Container>
 
       {/* Add to Card part */}
