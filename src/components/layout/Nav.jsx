@@ -8,7 +8,7 @@ import List from '../List'
 import Image from "../Image"
 import Flex from "../Flex"
 
-import One from "../../assets/f1.png"
+
 
 import Daraz from "../../assets/darazLogo.png"
 import Free from "../../assets/freeDelevary.png"
@@ -70,8 +70,9 @@ function Nav() {
     <>
     <Section>
       
-      
-        <div className={`absolute w-4/12 h-screen p-16 bg-primary z-50 top-0 duration-500 ${open ? "right-0" : "-right-1/2"}`}>
+      {
+        open &&
+        <div className={`absolute w-4/12 h-screen p-16 bg-red-500 z-50 top-0 right-0 duration-500`}>
             <Flex className="justify-end text-white">
               <AiOutlineClose size={30} onClick={()=>{setOpen(false)}}/>
             </Flex>
@@ -112,14 +113,18 @@ function Nav() {
             })
           }
              
+          <Flex className="mt-5">
              <Link to="/">
-               <button className='w-[48%] mr-4 px-4  py-4 bg-white rounded-[2px] font-roboto font-semibold text-secondary hover:bg-secondary duration-500 hover:text-white text-xl md:text-xl'>Cheack Out </button>
+               <button className='w-[200px] mr-4  px-4  py-4 bg-white rounded-[2px] font-roboto font-semibold text-secondary hover:bg-secondary duration-500 hover:text-white text-xl md:text-xl'>Cheack Out </button>
              </Link>
 
             <Link to="/add-to-card">
-            <button className='w-[48%] px-4  py-4 bg-secondary rounded-[2px] font-roboto text-white font-semibold hover:bg-white hover:text-secondary duration-500 text-xl md:text-xl'>Add to Card</button>
+            <button className='w-[200px] px-4  py-4 bg-secondary rounded-[2px] font-roboto text-white font-semibold hover:bg-white hover:text-secondary duration-500 text-xl md:text-xl'>Add to Card</button>
             </Link>
+             
+          </Flex>   
         </div>
+      }
       
       <Container>
         <div className='hidden lg:block'>

@@ -55,8 +55,9 @@ function FlashPartOne() {
      <Container>
 
       {/* Add to Card part */}
-    
-         <div className={`absolute w-[90%] h-screen px-1  bg-red-500 z-50 top-0 duration-500 ${open ? "right-0" : "right-[-100%]"}`}>
+        {
+          open &&
+         <div className={`absolute w-[90%] h-screen px-10  bg-green-500 z-50 top-0 duration-500 `}>
             <Flex className="justify-end text-white mt-5 mr-5 ">
               <AiOutlineClose size={30} onClick={()=>{setOpen(false)}}/>
             </Flex>
@@ -77,15 +78,15 @@ function FlashPartOne() {
                 </div>
 
                 <div className='w-4/12'>
-                  <p className='text-left w-[120px]  font-roboto font-normal text-base text-white'>{item.name}</p>
+                  <p className='text-left   font-roboto font-normal text-xs text-white'>{item.name}</p>
                 </div>
 
                 <div className='w-1/12'>
-                  <p className='text-left font-roboto font-normal text-base text-white ml-[-22px]'>{item.price}</p>
+                  <p className='text-left font-roboto font-normal text-xs text-white ml-[-22px]'>{item.price}</p>
                 </div>
 
                 <div className='w-1/12'>
-                  <p className='text-left flex justify-end font-roboto font-normal text-base text-white ml-[-15px]'>{item.quantity}</p>
+                  <p className='text-left flex justify-end font-roboto font-normal text-xs text-white ml-[-15px]'>{item.quantity}</p>
                 </div>
             </div>
             })
@@ -102,6 +103,7 @@ function FlashPartOne() {
              </Flex>
 
          </div>
+        }
 
        {/* Add to Card part */}
 
