@@ -114,8 +114,8 @@ function Nav() {
           }
              
           <Flex className="mt-5">
-             <Link to="/">
-               <button className='w-[200px] mr-4  px-4  py-4 bg-white rounded-[2px] font-roboto font-semibold text-secondary hover:bg-secondary duration-500 hover:text-white text-xl md:text-xl'>Cheack Out </button>
+             <Link to="/check-out">
+               <button onClick={()=>{setOpen(false)}} className='w-[200px] mr-4  px-4  py-4 bg-white rounded-[2px] font-roboto font-semibold text-secondary hover:bg-secondary duration-500 hover:text-white text-xl md:text-xl'>Cheack Out </button>
              </Link>
 
             <Link to="/add-to-card">
