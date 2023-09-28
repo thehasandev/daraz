@@ -61,7 +61,7 @@ function AddToCard() {
             }
               
               <Flex className="flex-col  items-center">
-                  <Link to="/">
+                  <Link to="/check-out">
                     <button className='w-[200px] mb-5 px-4  py-4 bg-white rounded-[2px] font-roboto font-semibold text-secondary hover:bg-secondary duration-500 hover:text-white text-lg md:text-xl'>Cheack Out </button>
                   </Link>
 
@@ -140,8 +140,8 @@ function AddToCard() {
         </Flex>
 
             <Flex className="justify-end mt-5">
-                <Link to="/add-to-card">
-                <button className='md:w-[300px] border-secondary border-[1px]  px-4  py-4 bg-secondary rounded-[2px] font-roboto text-white font-semibold hover:bg-white hover:text-secondary duration-500 text-base   md:text-xl'>Proceed to Checkout</button>
+                <Link to="/check-out">
+                <button  className='md:w-[300px] border-secondary border-[1px]  px-4  py-4 bg-secondary rounded-[2px] font-roboto text-white font-semibold hover:bg-white hover:text-secondary duration-500 text-base   md:text-xl'>Proceed to Checkout</button>
                 </Link>
             </Flex>
        </Container>

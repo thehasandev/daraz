@@ -164,7 +164,7 @@ function ForYouPartOne() {
                   <PriceDiscount  discount={`${descount} of`} persent={pesent} className="mb-5"/>
                    <Flex className=" justify-center gap-x-5 md:justify-between">
                     
-                    <Link to="/">
+                    <Link to="/check-out">
                        <button className=' md:w-[220px] w-[150px] px-4 md:px-0 py-4 bg-[#26ABD4] rounded-[2px] font-roboto font-semibold text-white text-xl md:text-2xl'>Buy now </button>
                     </Link>
 

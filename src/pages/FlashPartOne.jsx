@@ -20,7 +20,7 @@ import {LuShieldClose} from "react-icons/lu"
 import {AiOutlineClose} from "react-icons/ai"
 import {BsCart} from "react-icons/bs"
 
-import One from "../assets/f1.png"
+
 import Image from '../components/Image';
 
 import { addtocart } from '../Slices/cartSlices';
@@ -95,7 +95,7 @@ function FlashPartOne() {
           }
              
              <Flex className="flex-col  items-center">
-                <Link to="/">
+                <Link to="/check-out">
                   <button className='w-[200px] mb-5 px-4  py-4 bg-white rounded-[2px] font-roboto font-semibold text-secondary hover:bg-secondary duration-500 hover:text-white text-lg md:text-xl'>Cheack Out </button>
                 </Link>
 
