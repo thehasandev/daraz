@@ -16,7 +16,6 @@ export default {
       },
       fontFamily: {
         'roboto': ['Roboto', 'sans-serif' ],
-    
       },
       backgroundImage: {
         'one': "url(./assets/bannerMahejabin.jpg)",

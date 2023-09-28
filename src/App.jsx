@@ -19,12 +19,14 @@ const router = createBrowserRouter(
      <Route path='/' element={<Home/>}/>
      <Route path='/:tittle' element={<FlashPartOne/>}/>
      <Route path="/card/:card" element={<ForYouPartOne/>}/>
+     <Route path="/add-to-card" element={<AddToCard/>}/>
      <Route path='*' element={<Error/>}/>
     </Route>
   )
 );
 
 import "./App.css"
+import AddToCard from './pages/AddToCard';
 
 
 

@@ -16,9 +16,7 @@ function ForYou() {
     <Flex className="flex-wrap gap-y-2 px-4 justify-center xl:px-0 gap-x-3">
       { 
         forYou.map((item,index)=>{
-          let{card,imageurl,porstionHeadingText,price,descount,pesent} = item
-          
-           
+          let{card,imageurl,porstionHeadingText,price,descount,pesent} = item  
     return  <Link key={index} to={`card/${card}`} state={{imageurl,porstionHeadingText,price,descount,pesent}}> 
             <div className='w-[170px] mx-auto xl:w-[200px]  shadow-[gray] border border-transparent xl:hover:border-gray md:hover:shadow-xl'>
             <img src={imageurl}/>
