@@ -16,20 +16,24 @@ import Tittle from "../../assets/tittle.png"
 
 import {BsCart} from "react-icons/bs"
 import {BiSearchAlt2} from "react-icons/bi"
-import {AiOutlineClose, AiOutlineScan} from "react-icons/ai"
+import { AiOutlineClose, AiOutlineScan} from "react-icons/ai"
 import {MdOutlineMobileScreenShare} from "react-icons/md"
 import { Link } from 'react-router-dom'
 
 import { useSelector } from 'react-redux';
 
 
+
 function Nav() {
 
+  let location = window.location.pathname
   let cardData = useSelector((state)=>state.cart.cartitem)
+  
   
 
   const [scroll, setScroll] = useState(false);
   const [open,setOpen] =useState(false)
+  const [card,setCard]=useState (false)
 
  useEffect(() => {
     const handleScroll = () => {
@@ -70,61 +74,63 @@ function Nav() {
     <>
     <Section>
       
-      {
-        open &&
-        <div className={`absolute w-4/12 h-screen p-16 bg-primary z-50 top-0 right-0 duration-500`}>
-            <Flex className="justify-end text-white">
-              <AiOutlineClose size={30} onClick={()=>{setOpen(false)}}/>
-            </Flex>
-            <h2 className='font-roboto font-bold text-xl text-white mt-5 mb-8'>SHOPPING CART</h2>
+      {/* Add to Card for Large Device  */}
+      
+      <div className={`absolute w-4/12 h-screen p-16 bg-primary z-50 top-0 right-0   duration-500 ${open ? "rotate-x-0" : "rotate-x-90"}`}>
+          <Flex className="justify-end text-white">
+            <AiOutlineClose size={30} onClick={()=>{setOpen(false)}} className='cursor-pointer'/>
+          </Flex>
+          <h2 className='font-roboto font-bold text-xl text-white mt-5 mb-8'>SHOPPING CART</h2>
 
-            <ul className='flex gap-x-28'>
-               <li className='font-roboto font-medium text-base text-white'>Product</li>
-               <li className='font-roboto font-medium text-base text-white'>Name</li>
-               <li className='font-roboto font-medium text-base text-white'>Price</li>
-               <li className='font-roboto font-medium text-base text-white'>Quantity</li>
-            </ul>
+          <ul className='flex gap-x-28'>
+            <li className='font-roboto font-medium text-base text-white'>Product</li>
+            <li className='font-roboto font-medium text-base text-white'>Name</li>
+            <li className='font-roboto font-medium text-base text-white'>Price</li>
+            <li className='font-roboto font-medium text-base text-white'>Quantity</li>
+          </ul>
+          
+
+        {
+          cardData.map((item,index)=>{
             
+  return  <div key={index} className='flex gap-x-16 mt-8 mb-5'>
 
-          {
-            cardData.map((item,index)=>{
-              
-    return  <div key={index} className='flex gap-x-16 mt-8 mb-5'>
-
-              <div className='w-3/12'>
-                 <Image src={item.imgUrl}/>
-              </div>
-
-              <div className='w-4/12'>
-                <p className='text-left font-roboto font-normal text-base text-white'>{item.name}</p>
-              </div>
-              
-              <div className='w-2/12'>
-                <p className='text-left font-roboto font-normal text-base text-white ml-[-22px]'>{item.price}</p>
-              </div>
-
-              <div className='w-1/12'>
-                <p className='text-left flex justify-end font-roboto font-normal text-base text-white ml-[-15px]'>{item.quantity}</p>
-              </div>
-
+            <div className='w-3/12'>
+              <Image src={item.imgUrl}/>
             </div>
 
-              
-            })
-          }
-             
-          <Flex className="mt-5">
-             <Link to="/check-out">
-               <button onClick={()=>{setOpen(false)}} className='w-[200px] mr-4  px-4  py-4 bg-white rounded-[2px] font-roboto font-semibold text-secondary hover:bg-secondary duration-500 hover:text-white text-xl md:text-xl'>Cheack Out </button>
-             </Link>
+            <div className='w-4/12'>
+              <p className='text-left font-roboto font-normal text-base text-white'>{item.name}</p>
+            </div>
+            
+            <div className='w-2/12'>
+              <p className='text-left font-roboto font-normal text-base text-white ml-[-22px]'>{item.price}</p>
+            </div>
 
-            <Link to="/add-to-card">
-            <button onClick={()=>{setOpen(false)}} className='w-[200px] px-4  py-4 bg-secondary rounded-[2px] font-roboto text-white font-semibold hover:bg-white hover:text-secondary duration-500 text-xl md:text-xl'>Add to Card</button>
-            </Link>
-             
-          </Flex>   
-        </div>
-      }
+            <div className='w-1/12'>
+              <p className='text-left flex justify-end font-roboto font-normal text-base text-white ml-[-15px]'>{item.quantity}</p>
+            </div>
+
+          </div>
+
+            
+          })
+        }
+          
+        <Flex className="mt-5">
+          <Link to="/check-out">
+            <button onClick={()=>{setOpen(false)}} className='w-[200px] mr-4  px-4  py-4 bg-white rounded-[2px] font-roboto font-semibold text-secondary hover:bg-secondary duration-500 hover:text-white text-xl md:text-xl'>Cheack Out </button>
+          </Link>
+
+          <Link to="/add-to-card">
+          <button onClick={()=>{setOpen(false)}} className='w-[200px] px-4  py-4 bg-secondary rounded-[2px] font-roboto text-white font-semibold hover:bg-white hover:text-secondary duration-500 text-xl md:text-xl'>Add to Card</button>
+          </Link>
+          
+        </Flex>   
+      </div>
+       
+      {/* Add to Card for Large Device  */}
+      
       
       <Container>
         <div className='hidden lg:block'>
@@ -143,7 +149,7 @@ function Nav() {
       </Container>
     </Section>
     
-    <Section className={`bg-white py-4 lg:py-5 top-0  fixed w-full z-10 ${scroll && "top-0"}`}>
+    <Section className={`bg-white py-4 lg:py-5  fixed w-full z-10 ${scroll ? "top-0" : "top-0 md:top-8"}`}>
       <Container>
         <Flex className=" justify-between items-center">
            <div className='lg:hidden pl-4'>
@@ -175,20 +181,91 @@ function Nav() {
         </div>
          <p className='text-dm text-xs'>Coins</p>
       </div>
+{/* Change  */}
 
       <div className='lg:hidden pr-2'>
           <div className='text-primary'>
-            <MdOutlineMobileScreenShare size={23} className='ml-1'/>
+            {
+              location == "/" ?
+              <>
+              <MdOutlineMobileScreenShare size={23} className='ml-1'/>
+              <p className='text-dm text-xs'>Top Up</p>
+              </>
+              :
+              <div className='relative'>
+              <BsCart size={23} onClick={()=>{setCard(true)}} className='cursor-pointer'/>
+              <p className='font-roboto text-lg font-semibold top-[-18px] right-[-4px] absolute'>{cardData.length}</p>
+              <p className='text-dm text-xs'>Card</p>
+              </div>
+              
+            }
           </div>
-          <p className='text-dm text-xs'>Top Up</p>
+          
+      </div>
+
+{/* Add to Cart for mobile  */}
+
+
+ 
+  <div className={`absolute w-[90%] right-0 h-screen px-10  bg-primary z-50 top-0 duration-500 ${card ? "rotate-x-0" : "rotate-x-90"}`}>
+        <Flex className="justify-end text-white mt-5 mr-5 ">
+          <AiOutlineClose size={30} onClick={()=>{setCard(false)}}/>
+        </Flex>
+        <h2 className='font-roboto font-bold text-xl text-white mt-5 mb-8'>SHOPPING CART</h2>
+
+        <ul className='flex justify-between'>
+            <li className='font-roboto md:font-medium md:text-base text-white'>Product</li>
+            <li className='font-roboto md:font-medium md:text-base text-white'>Name</li>
+            <li className='font-roboto md:font-medium md:text-base text-white'>Price</li>
+            <li className='font-roboto md:font-medium md:text-base text-white'>Quantity</li>
+        </ul>
+        
+      {
+        cardData.map((item)=>{
+  return<div className='flex justify-between mt-10 mb-5'>
+            <div className='w-2/12'>
+                <Image src={item.imgUrl}/>
+            </div>
+
+            <div className='w-4/12'>
+              <p className='text-left   font-roboto font-normal text-xs text-white'>{item.name}</p>
+            </div>
+
+            <div className='w-1/12'>
+              <p className='text-left font-roboto font-normal text-xs text-white ml-[-22px]'>{item.price}</p>
+            </div>
+
+            <div className='w-1/12'>
+              <p className='text-left flex justify-end font-roboto font-normal text-xs text-white ml-[-15px]'>{item.quantity}</p>
+            </div>
         </div>
+        })
+      }
+          
+          <Flex className="flex-col  items-center">
+            <Link to="/check-out">
+              <button onClick={()=>{setCard(false)}} className='w-[200px] mb-5 px-4  py-4 bg-white rounded-[2px] font-roboto font-semibold text-secondary hover:bg-secondary duration-500 hover:text-white text-lg md:text-xl'>Cheack Out </button>
+            </Link>
+
+            <Link to="/add-to-card">
+            <button onClick={()=>{setCard(false)}}  className='w-[200px] px-4  py-4 bg-secondary rounded-[2px] font-roboto text-white font-semibold hover:bg-white hover:text-secondary duration-500 text-lg md:text-xl'>Add to Card</button>
+            </Link>
+          </Flex>
+
+  </div>
+
+
+{/* Add to Cart for mobile  */}
+
+
    </Flex>
 
           <div className='hidden lg:block'>
             <Flex className="items-center gap-x-8">
              
-              <div onClick={()=>setOpen(!open)} className='cursor-pointer'>
+              <div onClick={()=>setOpen(!open)} className='cursor-pointer relative'>
                 <BsCart className='text-3xl'/>
+                 <p className='font-roboto text-xl font-bold top-[-16px] right-[-10px] absolute'>{cardData.length}</p>
               </div>
                
             
