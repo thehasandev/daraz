@@ -1,52 +1,94 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 
 import Image from '../components/Image'
 import Container from "../components/Container"
 import { Link } from 'react-router-dom'
 import Flex from '../components/Flex'
+import {AiOutlineCloseSquare} from "react-icons/ai"
 
 
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+
+import { increment,decrement,removeCart } from '../Slices/cartSlices'
 
 
 function AddToCard() {
     let cardData = useSelector((state)=>state.cart.cartitem)
-    
-    const [open,setOpen] =useState(false)
+    let dispatch = useDispatch()
+  // Add to cart
+let [tottal,setTottal] =useState("")
+
+let handleDecrement =(item)=>{
+    dispatch(decrement(item))
+  }  
+
+
+let handleIncrement =(item)=>{
+    dispatch(increment(item))
+  }  
+
+let handelRemove =(item)=>{
+    dispatch(removeCart(item))
+  }  
+  
+  useEffect(()=>{
+    let total =0
+    cardData.map((item)=>{
+      total +=item.price*item.quantity
+      
+    })
+    setTottal(total)
+  },[cardData])
+
   return (
     <section className='mt-36 mb-16 px-5'>
        <Container>
         
         <h2 className='font-roboto font-bold text-2xl text-secondary'>Card</h2>
         
-        <ul className='flex justify-between  md:gap-x-[300px] mt-5'>
+        <ul className='flex justify-between md:px-2 mt-5 mb-5 md:mb-16'>
+            <li className='font-roboto font-medium text-base text-secondary'>Action</li>
             <li className='font-roboto font-medium text-base text-secondary'>Product</li>
             <li className='font-roboto font-medium text-base text-secondary'>Name</li>
             <li className='font-roboto font-medium text-base text-secondary'>Price</li>
             <li className='font-roboto font-medium text-base text-secondary'>Quantity</li>
+            <li className='font-roboto font-medium text-base text-secondary'>Subtottal</li>
         </ul>
 
         {
             cardData.map((item,index)=>{
              
-    return  <div key={index} className='flex justify-between md:gap-x-16 mt-16 mb-5'>
-                <div className='w-1/12'>
-                  <Image src={item.imgUrl}/>
-                </div>
+    return  <ul key={index} className='flex  justify-between items-center  mb-5 bg-primary py-1 text-white px-2'>
+              <li onClick={()=>{handelRemove(item)}} className='w-[50px] md:w-[250px]'>
+              <AiOutlineCloseSquare size={25}/>
+              </li>
 
-                <div className='w-4/12'>
-                <p className=' font-roboto  text-center mx-auto font-normal text-xs text-secondary'>{item.name}</p>
-                </div>
+              <li className='w-12 mr-2 md:w-16 bg-sky-500'>
+                <Image src={item.imgUrl}/>
+              </li>
 
-                <div className='w-2/12'>
-                <p className='pl-[20px] font-roboto font-normal text-base text-secondary '>{item.price}</p>
-                </div>
+              <li className='w-[90px] md:w-[450px] '>
+                <p className=' font-roboto  text-center mx-auto font-normal text-xs text-white'>{item.name}</p>
+              </li>
+             
+              <li className='md:w-[260px] '>
+                <p className='md:pl-5 font-roboto font-normal text-base text-white '>{item.price}</p>
+              </li>
 
-                <div className='w-1/12'>
-                <p className='text-left flex justify-end font-roboto font-normal text-base text-secondary '>{item.quantity}</p>
+              <li className='md:w-[70px]  text-center '>
+                <div className='border ml-4 border-white flex gap-x-2 justify-center'>
+                    <button onClick={()=>{handleDecrement(item)}}>-</button>
+                      {item.quantity}
+                    <button onClick={()=>{handleIncrement(item)}}>+</button>
                 </div>
+              </li>
 
-            </div>
+              <li className='md:w-[280px] w-16 '>
+               <p className=' text-right font-roboto font-normal text-base text-white '>{item.price*item.quantity}</p>
+              </li>
+                
+
+            </ul>
 
             })
         }
@@ -66,8 +108,8 @@ function AddToCard() {
 
                     <tbody>
                         <tr>
-                            <td className='border border-gray/50 font-dm font-normal text-base text-gray py-4 px-8 md:px-32'>389.99 $</td>
-                            <td className='border border-gray/50 font-dm font-bold text-base  text-secondary py-4 px-8 md:px-32'>389.99 $</td>  
+                            <td className='border border-gray/50 font-dm font-normal text-base text-gray py-4 px-8 md:px-32'>{tottal}</td>
+                            <td className='border border-gray/50 font-dm font-bold text-base  text-secondary py-4 px-8 md:px-32'>{tottal}</td>  
                         </tr>
                     </tbody>
                     

@@ -25,46 +25,47 @@ import { increment,decrement,removeCart } from '../../Slices/cartSlices'
 
 
 function Nav() {
-  const [tottal,setTottal] =useState("")
   const [scroll, setScroll] = useState(false);
   const [open,setOpen] =useState(false)
   const [card,setCard]=useState (false)
-
+  
   const [search,setSearch] = useState("")
   const [searchIcon,setSearchIcon] = useState(true)
-
+  
   let location = window.location.pathname
   let cardData = useSelector((state)=>state.cart.cartitem)
   let dispatch =useDispatch()
   
-
+  
   let handleSerchChange = (e)=>{
     if(e.target.value!= ""){
       setSearchIcon(false)
     }else{
       setSearchIcon(true)
     }
-     setSearch(e.target.value)  
+    setSearch(e.target.value)  
   }
-
-
- useEffect(() => {
+  
+  
+  useEffect(() => {
     const handleScroll = () => {
-          if (window.scrollY > 0) {
-            setScroll(true);
-          } else {
-            setScroll(false);
-          }
+      if (window.scrollY > 0) {
+        setScroll(true);
+      } else {
+        setScroll(false);
+      }
     };
-
+    
     window.addEventListener('scroll', handleScroll);
     return () => {
       window.removeEventListener('scroll', handleScroll);
     };
   }, []);
-
   
-// Add to cart
+  
+  // Add to cart
+let [tottal,setTottal] =useState("")
+
 let handleDecrement =(item)=>{
   dispatch(decrement(item))
 }  
@@ -136,7 +137,7 @@ useEffect(()=>{
                   </li>
 
                   <li className='w-16 font-roboto  font-normal text-base text-secondary'>
-                      <div className=' border border-secondary border-solid flex justify-center gap-x-2'>
+                      <div className=' border border-secondary border-solid flex justify-center gap-x-1.5'>
                         <button onClick={()=>{handleDecrement(item)}}>-</button>
                           {item.quantity}
                         <button onClick={()=>{handleIncrement(item)}}>+</button>
@@ -250,50 +251,75 @@ useEffect(()=>{
 
 
  
-  <div className={`absolute w-[90%] right-0 h-screen px-10  bg-primary z-50 top-0 duration-500 ${card ? "rotate-x-0" : "rotate-x-90"}`}>
+  <div className={`absolute w-full right-0 h-screen   bg-primary z-50 top-0 duration-500 ${card ? "rotate-x-0" : "rotate-x-90"}`}>
         <Flex className="justify-end text-white mt-5 mr-5 ">
           <AiOutlineClose size={30} onClick={()=>{setCard(false)}}/>
         </Flex>
-        <h2 className='font-roboto font-bold text-xl text-white mt-5 mb-8'>SHOPPING CART</h2>
+        <h2 className='font-roboto font-bold text-xl pl-2 text-white mt-5 mb-8'>SHOPPING CART</h2>
 
-        <ul className='flex justify-between'>
+        <ul className='flex justify-between px-2'>
+            <li className='font-roboto md:font-medium md:text-base text-white'>Action</li>
             <li className='font-roboto md:font-medium md:text-base text-white'>Product</li>
             <li className='font-roboto md:font-medium md:text-base text-white'>Name</li>
             <li className='font-roboto md:font-medium md:text-base text-white'>Price</li>
             <li className='font-roboto md:font-medium md:text-base text-white'>Quantity</li>
+            <li className='font-roboto md:font-medium md:text-base text-white'>Subtottal</li>
         </ul>
-        
-      {
-        cardData.map((item,index)=>{
-  return<div key={index} className='flex justify-between mt-10 mb-5'>
-            <div className='w-2/12'>
-                <Image src={item.imgUrl}/>
-            </div>
 
-            <div className='w-4/12'>
-              <p className='text-left   font-roboto font-normal text-xs text-white'>{item.name}</p>
-            </div>
+        {
+          cardData.length>0 ? 
+        <div>
+            {
+              cardData.map((item,index)=>{
+        return<ul key={index} className='flex justify-between bg-white items-center mt-10 mb-5 py-1'>
+                
+                  <li onClick={()=>{handelRemove(item)}} className=' font-roboto pl-5 font-normal text-base cursor-pointer text-secondary'>
+                          <AiOutlineCloseSquare size={25}/>
+                  </li>
 
-            <div className='w-1/12'>
-              <p className='text-left font-roboto font-normal text-xs text-white ml-[-22px]'>{item.price}</p>
-            </div>
+                  <li className='w-8'>
+                          <Image src={item.imgUrl}/>
+                    </li>
 
-            <div className='w-1/12'>
-              <p className='text-left flex justify-end font-roboto font-normal text-xs text-white ml-[-15px]'>{item.quantity}</p>
-            </div>
-        </div>
-        })
-      }
+                    <li className='w-16 font-roboto  font-normal text-xs text-secondary'>
+                      {item.name}
+                    </li>
+                    
+                    <li className=' bg-white  font-roboto font-normal text-base text-secondary'>
+                        {item.price}
+                    </li>
+
+                    <li className='mr-6 w-12 font-roboto  font-normal text-base text-secondary'>
+                        <div className=' border border-secondary border-solid flex justify-center gap-x-1.5'>
+                          <button onClick={()=>{handleDecrement(item)}}>-</button>
+                            {item.quantity}
+                          <button onClick={()=>{handleIncrement(item)}}>+</button>
+                        </div>
+                    </li>
+
+                    <li className=' text-right font-roboto  font-normal text-base text-secondary'>
+                          {item.price*item.quantity}
+                    </li>
           
-          <Flex className="flex-col  items-center">
-            <Link to="/check-out">
-              <button onClick={()=>{setCard(false)}} className='w-[200px] mb-5 px-4  py-4 bg-white rounded-[2px] font-roboto font-semibold text-secondary hover:bg-secondary duration-500 hover:text-white text-lg md:text-xl'>Cheack Out </button>
-            </Link>
+              </ul>
+              })
+            }
+              <p className='text-right pr-8  mb-4 font-roboto  font-medium text-lg text-white'>Totall : {tottal}</p> 
+              <Flex className="flex-col  items-end mr-5">
+                <Link to="/check-out">
+                  <button onClick={()=>{setCard(false)}} className='w-[200px] mb-4 px-4  py-4 bg-white rounded-[2px] font-roboto font-semibold text-secondary hover:bg-secondary duration-500 hover:text-white text-lg md:text-xl'>Cheack Out </button>
+                </Link>
 
-            <Link to="/add-to-card">
-            <button onClick={()=>{setCard(false)}}  className='w-[200px] px-4  py-4 bg-secondary rounded-[2px] font-roboto text-white font-semibold hover:bg-white hover:text-secondary duration-500 text-lg md:text-xl'>Add to Card</button>
-            </Link>
-          </Flex>
+                <Link to="/add-to-card">
+                <button onClick={()=>{setCard(false)}}  className='w-[200px] px-4  py-4 bg-secondary rounded-[2px] font-roboto text-white font-semibold hover:bg-white hover:text-secondary duration-500 text-lg md:text-xl'>Add to Card</button>
+                </Link>
+              </Flex>
+
+        </div>   
+        :
+        <h1 className='font-roboto font-bold absolute top-1/2 left-1/2 -translate-x-1/2 items-center text-3xl  text-white'>Card is Empty</h1>
+        }
+
 
   </div>
 
