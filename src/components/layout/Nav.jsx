@@ -16,24 +16,37 @@ import Tittle from "../../assets/tittle.png"
 
 import {BsCart} from "react-icons/bs"
 import {BiSearchAlt2} from "react-icons/bi"
-import { AiOutlineClose, AiOutlineScan} from "react-icons/ai"
+import { AiOutlineClose, AiOutlineScan,AiOutlineCloseSquare} from "react-icons/ai"
 import {MdOutlineMobileScreenShare} from "react-icons/md"
 import { Link } from 'react-router-dom'
 
-import { useSelector } from 'react-redux';
-
+import { useDispatch, useSelector } from 'react-redux';
+import { increment,decrement,removeCart } from '../../Slices/cartSlices'
 
 
 function Nav() {
-
-  let location = window.location.pathname
-  let cardData = useSelector((state)=>state.cart.cartitem)
-  
-  
-
+  const [tottal,setTottal] =useState("")
   const [scroll, setScroll] = useState(false);
   const [open,setOpen] =useState(false)
   const [card,setCard]=useState (false)
+
+  const [search,setSearch] = useState("")
+  const [searchIcon,setSearchIcon] = useState(true)
+
+  let location = window.location.pathname
+  let cardData = useSelector((state)=>state.cart.cartitem)
+  let dispatch =useDispatch()
+  
+
+  let handleSerchChange = (e)=>{
+    if(e.target.value!= ""){
+      setSearchIcon(false)
+    }else{
+      setSearchIcon(true)
+    }
+     setSearch(e.target.value)  
+  }
+
 
  useEffect(() => {
     const handleScroll = () => {
@@ -50,24 +63,33 @@ function Nav() {
     };
   }, []);
 
-  const [search,setSearch] = useState("")
-  const [searchIcon,setSearchIcon] = useState(true)
-
-  let handleSerchChange = (e)=>{
-    if(e.target.value!= ""){
-      setSearchIcon(false)
-    }else{
-      setSearchIcon(true)
-    }
-     setSearch(e.target.value)  
-  }
   
+// Add to cart
+let handleDecrement =(item)=>{
+  dispatch(decrement(item))
+}  
+let handleIncrement =(item)=>{
+  dispatch(increment(item))
+}  
+let handelRemove =(item)=>{
+  dispatch(removeCart(item))
+}  
+
+useEffect(()=>{
+  let total =0
+  cardData.map((item)=>{
+    total +=item.price*item.quantity
+    
+  })
+  setTottal(total)
+},[cardData])
 
  let dataFiler = Data.filter((item)=>{
   let searchValue = search.toLowerCase()
   return searchValue == "" ? "" : item.name.toLowerCase().includes(searchValue)
  }
-  
+
+
 )
 
   return (
@@ -76,57 +98,78 @@ function Nav() {
       
       {/* Add to Card for Large Device  */}
       
-      <div className={`absolute w-4/12 h-screen p-16 bg-primary z-50 top-0 right-0   duration-500 ${open ? "rotate-x-0" : "rotate-x-90"}`}>
-          <Flex className="justify-end text-white">
+      <div className={`absolute w-4/12 h-screen bg-primary z-50 top-0 right-0   duration-500 ${open ? "rotate-x-0" : "rotate-x-90"}`}>
+          <Flex className="justify-end px-2 text-white">
             <AiOutlineClose size={30} onClick={()=>{setOpen(false)}} className='cursor-pointer'/>
           </Flex>
-          <h2 className='font-roboto font-bold text-xl text-white mt-5 mb-8'>SHOPPING CART</h2>
+          <h2 className='font-roboto font-bold text-xl px-2 text-white mt-4 mb-4'>SHOPPING CART</h2>
 
-          <ul className='flex gap-x-28'>
+          <ul className='flex justify-between mb-2 px-2'>
+            <li className='font-roboto font-medium text-base text-white'>Action</li>
             <li className='font-roboto font-medium text-base text-white'>Product</li>
             <li className='font-roboto font-medium text-base text-white'>Name</li>
-            <li className='font-roboto font-medium text-base text-white'>Price</li>
+            <li className='font-roboto font-medium text-base ml-6 text-white'>Price</li>
             <li className='font-roboto font-medium text-base text-white'>Quantity</li>
+            <li className='font-roboto font-medium text-base text-white'>Subtotal</li>
           </ul>
-          
+          {
+            cardData.length>0 ? 
+            <div>
+                {
+                  cardData.map((item,index)=>{
+                    
+          return  <ul key={index} className='flex bg-white text-secondary items-center my-4'>
+                  <li onClick={()=>{handelRemove(item)}} className='w-24 font-roboto pl-5 font-normal text-base cursor-pointer text-secondary'>
+                    <AiOutlineCloseSquare size={25}/>
+                  </li>
 
-        {
-          cardData.map((item,index)=>{
-            
-  return  <div key={index} className='flex gap-x-16 mt-8 mb-5'>
+                  <li className='w-10 mr-5 '>
+                    <Image src={item.imgUrl}/>
+                  </li>
 
-            <div className='w-3/12'>
-              <Image src={item.imgUrl}/>
+                  <li className='w-36 mr-2 text-center font-roboto  font-normal text-base text-secondary'>
+                    {item.name}
+                  </li>
+                  
+                  <li className='w-[80px] ml-1 font-roboto font-normal text-base text-secondary'>
+                      {item.price}
+                  </li>
+
+                  <li className='w-16 font-roboto  font-normal text-base text-secondary'>
+                      <div className=' border border-secondary border-solid flex justify-center gap-x-2'>
+                        <button onClick={()=>{handleDecrement(item)}}>-</button>
+                          {item.quantity}
+                        <button onClick={()=>{handleIncrement(item)}}>+</button>
+                      </div>
+                  </li>
+
+                  <li className='w-24 text-right font-roboto  font-normal text-base text-secondary'>
+                        {item.price*item.quantity}
+                  </li>
+                  
+
+
+                  </ul>
+
+                    
+                  })
+                }
+                <p className='text-right pr-8 font-roboto  font-medium text-lg text-white'>Totall : {tottal}</p> 
+                <Flex className="mt-5 justify-end">
+                  <Link to="/check-out">
+                    <button onClick={()=>{setOpen(false)}} className='w-[200px] mr-4  px-4  py-4 bg-white rounded-[2px] font-roboto font-semibold text-secondary hover:bg-secondary duration-500 hover:text-white text-xl md:text-xl'>Cheack Out </button>
+                  </Link>
+
+                  <Link to="/add-to-card">
+                  <button onClick={()=>{setOpen(false)}} className='w-[200px] px-4  py-4 bg-secondary rounded-[2px] font-roboto text-white font-semibold hover:bg-white hover:text-secondary duration-500 text-xl md:text-xl'>Add to Card</button>
+                  </Link>
+                  
+                </Flex>   
+
             </div>
-
-            <div className='w-4/12'>
-              <p className='text-left font-roboto font-normal text-base text-white'>{item.name}</p>
-            </div>
-            
-            <div className='w-2/12'>
-              <p className='text-left font-roboto font-normal text-base text-white ml-[-22px]'>{item.price}</p>
-            </div>
-
-            <div className='w-1/12'>
-              <p className='text-left flex justify-end font-roboto font-normal text-base text-white ml-[-15px]'>{item.quantity}</p>
-            </div>
-
-          </div>
-
-            
-          })
-        }
-          
-        <Flex className="mt-5">
-          <Link to="/check-out">
-            <button onClick={()=>{setOpen(false)}} className='w-[200px] mr-4  px-4  py-4 bg-white rounded-[2px] font-roboto font-semibold text-secondary hover:bg-secondary duration-500 hover:text-white text-xl md:text-xl'>Cheack Out </button>
-          </Link>
-
-          <Link to="/add-to-card">
-          <button onClick={()=>{setOpen(false)}} className='w-[200px] px-4  py-4 bg-secondary rounded-[2px] font-roboto text-white font-semibold hover:bg-white hover:text-secondary duration-500 text-xl md:text-xl'>Add to Card</button>
-          </Link>
-          
-        </Flex>   
+            :
+            <h1 className='font-roboto font-bold absolute top-1/2 left-1/2 -translate-x-1/2 items-center text-3xl  text-white'>Card is Empty</h1>
+          }
       </div>
        
       {/* Add to Card for Large Device  */}
@@ -221,8 +264,8 @@ function Nav() {
         </ul>
         
       {
-        cardData.map((item)=>{
-  return<div className='flex justify-between mt-10 mb-5'>
+        cardData.map((item,index)=>{
+  return<div key={index} className='flex justify-between mt-10 mb-5'>
             <div className='w-2/12'>
                 <Image src={item.imgUrl}/>
             </div>
