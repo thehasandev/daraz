@@ -119,7 +119,7 @@ useEffect(()=>{
                 {
                   cardData.map((item,index)=>{
                     
-          return  <ul key={index} className='flex bg-white text-secondary items-center my-4'>
+          return  <ul key={index} className='flex bg-white justify-between text-secondary items-center my-4'>
                   <li onClick={()=>{handelRemove(item)}} className='w-24 font-roboto pl-5 font-normal text-base cursor-pointer text-secondary'>
                     <AiOutlineCloseSquare size={25}/>
                   </li>
@@ -144,7 +144,7 @@ useEffect(()=>{
                       </div>
                   </li>
 
-                  <li className='w-24 text-right font-roboto  font-normal text-base text-secondary'>
+                  <li className='w-24 text-right font-roboto mr-2  font-normal text-base text-secondary'>
                         {item.price*item.quantity}
                   </li>
                   
@@ -158,11 +158,11 @@ useEffect(()=>{
                 <p className='text-right pr-8 font-roboto  font-medium text-lg text-white'>Totall : {tottal}</p> 
                 <Flex className="mt-5 justify-end">
                   <Link to="/check-out">
-                    <button onClick={()=>{setOpen(false)}} className='w-[200px] mr-4  px-4  py-4 bg-white rounded-[2px] font-roboto font-semibold text-secondary hover:bg-secondary duration-500 hover:text-white text-xl md:text-xl'>Cheack Out </button>
+                    <button onClick={()=>{setOpen(false)}} className='w-[200px] lg:w-[150px] mr-4  px-4  py-4 bg-white rounded-[2px] font-roboto font-semibold text-secondary hover:bg-secondary duration-500 hover:text-white text-xl md:text-xl'>Cheack Out </button>
                   </Link>
 
                   <Link to="/add-to-card">
-                  <button onClick={()=>{setOpen(false)}} className='w-[200px] px-4  py-4 bg-secondary rounded-[2px] font-roboto text-white font-semibold hover:bg-white hover:text-secondary duration-500 text-xl md:text-xl'>Add to Card</button>
+                  <button onClick={()=>{setOpen(false)}} className='w-[200px] lg:w-[150px] px-4  py-4 bg-secondary rounded-[2px] font-roboto text-white font-semibold hover:bg-white hover:text-secondary duration-500 text-xl md:text-xl'>Add to Card</button>
                   </Link>
                   
                 </Flex>   
@@ -297,7 +297,7 @@ useEffect(()=>{
                         </div>
                     </li>
 
-                    <li className=' text-right font-roboto  font-normal text-base text-secondary'>
+                    <li className=' mr-2 font-roboto  font-normal text-base text-secondary'>
                           {item.price*item.quantity}
                     </li>
           
