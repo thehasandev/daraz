@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 
 import Section from '../components/Section';
@@ -39,6 +39,12 @@ function FlashPartOne() {
      
     
     }
+    useEffect(() => {
+      window.scrollTo({
+        top: 0,
+        left: 0,
+      });
+    }, []);
     
   return (
     <>
