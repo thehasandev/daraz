@@ -10,7 +10,7 @@ import List from "../List"
 function Banner() {
 
     const settings = {
-        dots: true,
+        dots: false,
         infinite: true,
         slidesToShow: 1,
         slidesToScroll: 1,
@@ -19,17 +19,17 @@ function Banner() {
         autoplaySpeed: 4000,
         arrows:false,
         fade:true,
-        appendDots: dots => (
-          <div>
-             <ul className='flex justify-center gap-x-2 absolute -bottom-3 left-1/2 -translate-x-1/2'> {dots} </ul>
-          </div>
-        ),
+        // appendDots: dots => (
+        //   <div>
+        //      <ul className='flex justify-center gap-x-2 absolute bottom-[20px] left-1/2 -translate-x-1/2'> {dots} </ul>
+        //   </div>
+        // ),
        
-        customPaging: i => (
-          <div className='text-[100px] text-gray  hidden xl:block'>
-              .
-          </div>
-        )
+        // customPaging: i => (
+        //   <div className='text-[100px] text-gray  hidden xl:block'>
+        //       .
+        //   </div>
+        // )
       };
     
   return (
